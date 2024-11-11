@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+ 
+            {% if request.user.is_authenticated %}
+            <h3 class="text-center bg-dark text-white container p-3 mt-5">Home Page</h3>
+            <div class="container">
+                <p class=" d-inline">Welcomes, <h3 class="d-inline">{{ request.user.username }}</h3> </p>
+            </div>
+            {% else %}
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>You're not Authorized this page</strong> 
+            </div>
+            
+            <script>
+              $(".alert").alert();
+            </script>
+            <p>Try to <a href="{% url 'login' %}" style="text-decoration: none;">Login Here!</a></p>
+            {% endif %}
+{% endblock %}
